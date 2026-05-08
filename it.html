@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>R1 Radiance Lights Pvt Ltd</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #eef2f7;
+            color: #0f172a;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 92%;
+            max-width: 1450px;
+            margin: auto;
+        }
+
+        /* ===== TOP BAR ===== */
+
+        .topbar {
+            background: #0b1b33;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 13px;
+            border-bottom: 3px solid #d4af37;
+        }
+
+        .topbar-flex {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        /* ===== HEADER ===== */
+
+        header {
+            background: #ffffff;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo-wrap {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .logo-wrap img {
+            height: 72px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .company-title h1 {
+            font-size: 28px;
+            line-height: 1.1;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: #0b1b33;
+            letter-spacing: 1px;
+        }
+
+        .company-title span {
+            display: block;
+            font-size: 13px;
+            color: #475569;
+            margin-top: 5px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #0f172a;
+        }
+
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background: #0b3d91;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== HERO ===== */
+
+        .hero {
+            position: relative;
+            background:
+                linear-gradient(rgba(4, 12, 24, 0.88), rgba(4, 12, 24, 0.88)),
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1800&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                repeating-linear-gradient(90deg,
+                    transparent,
+                    transparent 80px,
+                    rgba(255, 255, 255, 0.03) 81px);
+            animation: gridMove 8s linear infinite;
+        }
+
+        @keyframes gridMove {
+            from {
+                transform: translateX(0px);
+            }
+
+            to {
+                transform: translateX(81px);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 950px;
+            animation: fadeUp 1.2s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+
+        .govt-badge {
+            display: inline-block;
+            background: #d4af37;
+            color: #111827;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+            border-radius: 3px;
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.35);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.03);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .hero h2 {
+            font-size: 68px;
+            line-height: 1.05;
+            color: #fff;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            margin-bottom: 28px;
+            text-transform: uppercase;
+        }
+
+        .hero h2 span {
+            color: #d4af37;
+        }
+
+        .hero p {
+            color: #dbe3ef;
+            line-height: 1.9;
+            font-size: 18px;
+            max-width: 900px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 17px 32px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: 0.3s;
+            border-radius: 2px;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .btn-primary {
+            background: #d4af37;
+            color: #111827;
+        }
+
+        .btn-primary:hover {
+            background: #f4cf57;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ===== STATS ===== */
+
+        .stats-bar {
+            background: #0b1b33;
+            color: #fff;
+            padding: 35px 0;
+            border-top: 5px solid #d4af37;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .stat {
+            text-align: center;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h3 {
+            font-size: 52px;
+            color: #d4af37;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .stat p {
+            margin-top: 10px;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #cbd5e1;
+        }
+
+        /* ===== SECTIONS ===== */
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-size: 52px;
+            color: #0b1b33;
+            margin-bottom: 15px;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .section-title p {
+            color: #475569;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 17px;
+        }
+
+        /* ===== SERVICES ===== */
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+        }
+
+        .service-card {
+            background: #fff;
+            border-top: 6px solid #0b3d91;
+            padding: 35px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent);
+            transition: 0.7s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #0b1b33;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .service-card ul {
+            padding-left: 18px;
+            line-height: 2;
+            color: #334155;
+        }
+
+        /* ===== SECURITY ===== */
+
+        .security-section {
+            background: #0b1b33;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .security-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.08);
+            top: -200px;
+            right: -200px;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .security-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px;
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .security-card:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(212, 175, 55, 0.15);
+        }
+
+        .security-card h3 {
+            font-size: 28px;
+            margin-bottom: 22px;
+            color: #d4af37;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .security-card ul {
+            padding-left: 20px;
+            line-height: 2;
+            color: #dbeafe;
+        }
+
+        /* ===== CERTIFICATIONS ===== */
+
+        .cert-strip {
+            background: #d4af37;
+            color: #111827;
+            padding: 22px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 15px;
+        }
+
+        .marquee {
+            display: inline-block;
+            animation: marquee 28s linear infinite;
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ===== CONTACT ===== */
+
+        .contact-box {
+            background: #fff;
+            padding: 60px;
+            border-top: 8px solid #0b3d91;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .contact-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #0b1b33;
+            font-family: 'Rajdhani', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .contact-card p {
+            line-height: 2;
+            color: #334155;
+        }
+
+        footer {
+            background: #08111f;
+            color: #cbd5e1;
+            padding: 35px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* ===== FLOATING ANIMATION ===== */
+
+        .service-card,
+        .security-card {
+            animation: floatAnim 5s ease-in-out infinite;
+        }
+
+        @keyframes floatAnim {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-6px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        /* ===== IMAGE HOVER ===== */
+
+        img {
+            transition: 0.5s;
+        }
+
+        img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ===== SECTION LINE ===== */
+
+        .section-title h2::after {
+            content: '';
+            width: 90px;
+            height: 4px;
+            background: #d4af37;
+            display: block;
+            margin: 18px auto 0;
+        }
+
+        /* ===== GOVT STYLE TABLE LOOK ===== */
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+
+        table td,
+        table th {
+            border: 1px solid #cbd5e1;
+            padding: 14px;
+        }
+
+        /* ===== GLOW EFFECT ===== */
+
+        .security-card:hover {
+            box-shadow:
+                0 0 25px rgba(212, 175, 55, 0.18),
+                0 0 55px rgba(212, 175, 55, 0.1);
+        }
+
+        /* ===== RESPONSIVE ===== */
+
+        @media(max-width:950px) {
+
+            .hero h2 {
+                font-size: 46px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-box {
+                padding: 35px;
+            }
+
+            .section-title h2 {
+                font-size: 40px;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+
+    <div class="topbar">
+        <div class="container topbar-flex">
+            <div>
+                Government & Enterprise Technology Infrastructure Partner
+            </div>
+
+            <div>
+                Independent Technical Security Assessment & Deployment Readiness Services
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="container">
+
+            <nav>
+
+                <div class="logo-wrap">
+
+                    <img src="img/logo/Logo White BG.jpg" alt="R1 Radiance Logo">
+
+                    <div class="company-title">
+                        <h1>R1 RADIANCE LIGHTS PVT LTD</h1>
+
+                        <span>
+                            Enterprise Technology • Cybersecurity • Government Systems
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#security">Security</a>
+                    <a href="#contact">Contact</a>
+                </div>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+    <!-- HERO -->
+
+    <section class="hero" id="about">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <div class="govt-badge">
+                    10+ Years of Enterprise & Government Engineering Experience
+                </div>
+
+                <h2>
+                    Trusted Technology & Security Partner for
+                    <span>Government and Enterprise Infrastructure</span>
+                </h2>
+
+                <p>
+                    R1 Radiance Lights Pvt Ltd delivers enterprise-grade IT infrastructure, operational platforms,
+                    cybersecurity assessments, AI-driven systems, smart technology ecosystems, and mission-critical
+                    deployments for private enterprises and Government of India agencies.
+                    <br><br>
+                    The organization specializes in large-scale secure deployments, technical security audits,
+                    independent vulnerability assessment activities, infrastructure modernization, deployment readiness
+                    reviews, and enterprise operational systems engineered for high reliability and long-term
+                    scalability.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#contact" class="btn btn-primary">
+                        Request Consultation
+                    </a>
+
+                    <a href="#security" class="btn btn-secondary">
+                        Security Assessment Services
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- STATS -->
+
+    <section class="stats-bar">
+
+        <div class="container">
+
+            <div class="stats-grid">
+
+                <div class="stat">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+
+                <div class="stat">
+                    <h3>100+</h3>
+                    <p>Enterprise Projects</p>
+                </div>
+
+                <div class="stat">
+                    <h3>24x7</h3>
+                    <p>Operational Support</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Govt</h3>
+                    <p>Infrastructure Engagements</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SERVICES -->
+
+    <section class="section" id="services">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Enterprise Technology Services</h2>
+
+                <p>
+                    Comprehensive technology engineering, cybersecurity assessment, infrastructure modernization, and
+                    operational platform development services for government and enterprise environments.
+                </p>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card">
+
+                    <h3>Government IT Infrastructure</h3>
+
+                    <ul>
+                        <li>Operational MIS Platforms</li>
+                        <li>Digital Governance Systems</li>
+                        <li>Monitoring & Tracking Infrastructure</li>
+                        <li>Workflow Automation Ecosystems</li>
+                        <li>Secure Enterprise Portals</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Enterprise Software Engineering</h3>
+
+                    <ul>
+                        <li>Large Scale Backend Systems</li>
+                        <li>API Infrastructure Development</li>
+                        <li>AI-Based Operational Platforms</li>
+                        <li>Mobile & Web Applications</li>
+                        <li>Cloud Native Architectures</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Cybersecurity & Technical Audits</h3>
+
+                    <ul>
+                        <li>Independent Technical Security Assessments</li>
+                        <li>Vulnerability Assessment Activities</li>
+                        <li>API Security Reviews</li>
+                        <li>Infrastructure Exposure Analysis</li>
+                        <li>Deployment Readiness Certification</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Enterprise Infrastructure & Security Operations</h2>
+
+                <p>
+                    Secure technology operations, enterprise infrastructure engineering, and cybersecurity assessment
+                    ecosystems.
+                </p>
+
+            </div>
+
+            <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:25px;
+    ">
+
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+                <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+                <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1600&auto=format&fit=crop"
+                    style="width:100%; height:320px; object-fit:cover; border-radius:8px;">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CERTIFICATIONS -->
+
+    <section class="cert-strip">
+
+        <div class="marquee">
+
+            APPLICATION SECURITY REVIEW • API SECURITY TESTING • VAPT ACTIVITIES • INFRASTRUCTURE SECURITY OBSERVATIONS
+            • DEPLOYMENT READINESS REVIEW • CLOUD SECURITY ASSESSMENT • AUTHENTICATION VALIDATION • ACCESS CONTROL
+            REVIEW • SECURE COMMUNICATION VERIFICATION • ENTERPRISE CYBERSECURITY REPORTING • APPLICATION SECURITY
+            REVIEW • API SECURITY TESTING • VAPT ACTIVITIES • INFRASTRUCTURE SECURITY OBSERVATIONS • DEPLOYMENT
+            READINESS REVIEW • CLOUD SECURITY ASSESSMENT
+
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Why Organizations Trust R1 Radiance</h2>
+
+                <p>
+                    Delivering secure, scalable, and mission-critical technology systems with enterprise-grade
+                    engineering practices and operational security methodologies.
+                </p>
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <h3>10+ Years Experience</h3>
+
+                    <ul>
+                        <li>Enterprise infrastructure delivery</li>
+                        <li>Government technology deployments</li>
+                        <li>Operational platform engineering</li>
+                        <li>Critical infrastructure support</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Security-First Engineering</h3>
+
+                    <ul>
+                        <li>OWASP aligned review methodologies</li>
+                        <li>API security validation</li>
+                        <li>Cloud infrastructure observations</li>
+                        <li>Operational risk assessments</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Enterprise Ready Systems</h3>
+
+                    <ul>
+                        <li>Scalable backend infrastructure</li>
+                        <li>Multi-role operational platforms</li>
+                        <li>High availability architecture</li>
+                        <li>Secure deployment practices</li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section" style="background:#ffffff;">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Security Assessment Lifecycle</h2>
+
+                <p>
+                    Structured and controlled review methodology followed during enterprise security assessment
+                    engagements.
+                </p>
+
+            </div>
+
+            <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:25px;
+    ">
+
+                <div class="service-card">
+                    <h3>01</h3>
+                    <p>Scope Definition & Environment Review</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>02</h3>
+                    <p>Infrastructure & Application Assessment</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>03</h3>
+                    <p>Validation & Vulnerability Analysis</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>04</h3>
+                    <p>Reporting & Deployment Readiness Review</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section security-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2 style="color:#fff;">
+                    Industries We Support
+                </h2>
+
+                <p style="color:#cbd5e1;">
+                    Enterprise technology and cybersecurity services delivered across diverse operational sectors.
+                </p>
+
+            </div>
+
+            <div class="security-grid">
+
+                <div class="security-card">
+                    <h3>Government & Public Sector</h3>
+                </div>
+
+                <div class="security-card">
+                    <h3>Logistics & Transportation</h3>
+                </div>
+
+                <div class="security-card">
+                    <h3>Enterprise SaaS Platforms</h3>
+                </div>
+
+                <div class="security-card">
+                    <h3>Smart Infrastructure & IoT</h3>
+                </div>
+
+                <div class="security-card">
+                    <h3>Financial & Payment Systems</h3>
+                </div>
+
+                <div class="security-card">
+                    <h3>Education & Research Institutions</h3>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section" style="background:#f8fafc;">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2>Security Assessments & Compliance Services</h2>
+
+                <p>
+                    Independent technical security assessment, deployment readiness validation, and cybersecurity audit
+                    activities for enterprise and institutional environments.
+                </p>
+
+            </div>
+
+            <div class="services-grid">
+
+                <div class="service-card">
+
+                    <h3>VAPT Activities</h3>
+
+                    <ul>
+                        <li>Web Application VAPT</li>
+                        <li>API Security Testing</li>
+                        <li>Mobile Application Testing</li>
+                        <li>Network Penetration Testing</li>
+                        <li>Cloud Security Review</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Security Audit Services</h3>
+
+                    <ul>
+                        <li>Infrastructure Security Audit</li>
+                        <li>Access Control Review</li>
+                        <li>Authentication Validation</li>
+                        <li>Firewall & Exposure Review</li>
+                        <li>Operational Security Review</li>
+                    </ul>
+
+                </div>
+
+                <div class="service-card">
+
+                    <h3>Compliance Readiness</h3>
+
+                    <ul>
+                        <li>ISO 27001 Readiness</li>
+                        <li>SOC2 Preparation Assistance</li>
+                        <li>DPDP Operational Alignment</li>
+                        <li>Secure Deployment Guidance</li>
+                        <li>Cybersecurity Documentation</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="section security-section">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2 style="color:#fff;">
+                    Technologies & Infrastructure
+                </h2>
+
+                <p style="color:#cbd5e1;">
+                    Enterprise-grade engineering stack used for scalable, secure, and mission-critical deployments.
+                </p>
+
+            </div>
+
+            <div class="security-grid">
+
+                <div class="security-card">
+
+                    <h3>Backend Infrastructure</h3>
+
+                    <ul>
+                        <li>Django & Python Ecosystems</li>
+                        <li>Node.js Infrastructure</li>
+                        <li>REST API Systems</li>
+                        <li>Microservice Architectures</li>
+                        <li>AI & Agentic Infrastructure</li>
+                    </ul>
+
+                </div>
+
+                <div class="security-card">
+
+                    <h3>Cloud & DevOps</h3>
+
+                    <ul>
+                        <li>AWS & Azure Deployments</li>
+                        <li>Docker & Kubernetes</li>
+                        <li>CI/CD Infrastructure</li>
+                        <li>Cloud Security Hardening</li>
+                        <li>Monitoring & Logging</li>
+                    </ul>
+
+                </div>
+
+                <div class="security-card">
+
+                    <h3>Security Tooling</h3>
+
+                    <ul>
+                        <li>Burp Suite</li>
+                        <li>OWASP ZAP</li>
+                        <li>Nmap & OpenVAS</li>
+                        <li>Semgrep Analysis</li>
+                        <li>Security Review Automation</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- SECURITY -->
+
+    <section class="section security-section" id="security">
+
+        <div class="container">
+
+            <div class="section-title">
+
+                <h2 style="color:#fff;">
+                    Security Assessment & Certification Services
+                </h2>
+
+                <p style="color:#cbd5e1;">
+                    Independent technical security assessment and deployment readiness review services aligned with
+                    industry-standard cybersecurity methodologies and secure operational practices.
+                </p>
+
+            </div>
+
+            <div class="security-grid">
+
+                <div class="security-card">
+
+                    <h3>Application Security Testing</h3>
+
+                    <ul>
+                        <li>OWASP-based security review activities</li>
+                        <li>Authentication validation testing</li>
+                        <li>Authorization & access control assessment</li>
+                        <li>Session security verification</li>
+                        <li>Input validation observations</li>
+                    </ul>
+
+                </div>
+
+                <div class="security-card">
+
+                    <h3>API Security Assessment</h3>
+
+                    <ul>
+                        <li>REST API interaction review</li>
+                        <li>Token validation assessment</li>
+                        <li>Endpoint exposure analysis</li>
+                        <li>Payload handling verification</li>
+                        <li>Operational API security observations</li>
+                    </ul>
+
+                </div>
+
+                <div class="security-card">
+
+                    <h3>Infrastructure & Deployment Audit</h3>
+
+                    <ul>
+                        <li>Cloud infrastructure observations</li>
+                        <li>Firewall exposure review</li>
+                        <li>Deployment readiness assessment</li>
+                        <li>Secure communication verification</li>
+                        <li>Operational security posture review</li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="section" id="contact">
+
+        <div class="container">
+
+            <div class="contact-box">
+
+                <div class="section-title">
+
+                    <h2>Contact R1 Radiance</h2>
+
+                    <p>
+                        Enterprise technology engineering, cybersecurity assessment, operational infrastructure
+                        modernization, and mission-critical deployment services across India.
+                    </p>
+
+                </div>
+
+                <div class="contact-grid">
+
+                    <div class="contact-card">
+
+                        <h3>Corporate Office</h3>
+
+                        <p>
+                            R1 Radiance Lights Pvt Ltd<br><br>
+
+                            F4, Awfis Abil Imperial,<br>
+                            Pancard Club Road,<br>
+                            Baner, Pune – India
+                        </p>
+
+                    </div>
+
+                    <div class="contact-card">
+
+                        <h3>Business Contact</h3>
+
+                        <p>
+                            Phone: +91 7875443772<br><br>
+
+                            Email: contact@r1radiance.com<br><br>
+
+                            Enterprise & Government Solutions Division
+                        </p>
+
+                    </div>
+
+                    <div class="contact-card">
+
+                        <h3>Core Domains</h3>
+
+                        <p>
+                            Government Systems<br>
+                            Cybersecurity Assessment<br>
+                            Enterprise Infrastructure<br>
+                            AI Operational Platforms<br>
+                            Smart Technology Systems<br>
+                            Infrastructure Engineering
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer style="background:#07101d; padding:70px 0 30px;">
+
+        <div class="container">
+
+            <div style="
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:40px;
+      margin-bottom:50px;
+    ">
+
+                <div>
+
+                    <h3 style="margin-bottom:20px; color:#fff;">
+                        R1 Radiance Lights Pvt Ltd
+                    </h3>
+
+                    <p style="color:#94a3b8; line-height:1.9;">
+                        Enterprise technology infrastructure, cybersecurity assessment services, secure operational
+                        platforms, AI systems, and government technology engineering partner.
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h3 style="margin-bottom:20px; color:#fff;">
+                        Security Services
+                    </h3>
+
+                    <p style="color:#94a3b8; line-height:2;">
+                        VAPT Activities<br>
+                        API Security Testing<br>
+                        Infrastructure Review<br>
+                        Deployment Readiness<br>
+                        Security Audit Services
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h3 style="margin-bottom:20px; color:#fff;">
+                        Enterprise Solutions
+                    </h3>
+
+                    <p style="color:#94a3b8; line-height:2;">
+                        Government Platforms<br>
+                        AI Infrastructure<br>
+                        Smart Systems<br>
+                        Cloud Engineering<br>
+                        Enterprise SaaS
+                    </p>
+
+                </div>
+
+                <div>
+
+                    <h3 style="margin-bottom:20px; color:#fff;">
+                        Contact
+                    </h3>
+
+                    <p style="color:#94a3b8; line-height:2;">
+                        Pune, Maharashtra<br>
+                        +91 7875443772<br>
+                        contact@r1radiance.com
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div style="
+      border-top:1px solid rgba(255,255,255,0.08);
+      padding-top:25px;
+      text-align:center;
+      color:#64748b;
+    ">
+
+                © 2026 R1 Radiance Lights Pvt Ltd • All Rights Reserved
+
+            </div>
+
+        </div>
+
+    </footer>
+
+</body>
+
+</html>
